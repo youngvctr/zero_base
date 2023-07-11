@@ -17,7 +17,7 @@ class Pager {
     private int currentBlock() {
         return (pageIndex - 1) / pageBlock;
     }
-    public int lastIndex() {
+    public int lastIdx() {
         return (int) (Math.ceil(totalPage / pageBlock)) + 1;
     }
     private int firstNo() {
@@ -27,13 +27,13 @@ class Pager {
         return currentBlock() * pageBlock + pageBlock;
     }
 
-    public StringBuffer print() {
+    public StringBuffer printPage() {
         StringBuffer pageNavigation = new StringBuffer();
 
         pageNavigation.append("<a href=\"#\">[&#52376;&#51020;]</a> ").append("<a href=\"#\">[&#51060;&#51204;]</a> ");
 
         for (int i = firstNo(); i <= lastNo(); i++) {
-            if (i > lastIndex() ) {
+            if (i > lastIdx() ) {
                 continue;
             }
 
@@ -56,8 +56,8 @@ public class Task3 {
             File file = new File("index3.html");
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
             Pager pager = new Pager(127, 10, 1);
-            for (int i = pager.pageIndex; i <= pager.lastIndex(); i++) {
-                writer.write(new String(pager.print()));
+            for (int i = pager.pageIndex; i <= pager.lastIdx(); i++) {
+                writer.write(new String(pager.printPage()));
                 pager.pageIndex++;
             }
 
